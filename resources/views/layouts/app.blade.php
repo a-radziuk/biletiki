@@ -6,7 +6,13 @@
     <title>@yield('title', config('app.name'))</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-gradient-to-b from-slate-100 via-white to-violet-50/80 text-slate-900 antialiased">
+<body class="relative min-h-screen text-slate-900 antialiased">
+    @if ($sessionBackgroundUrl)
+        <div aria-hidden="true" class="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ $sessionBackgroundUrl }}');"></div>
+        <div aria-hidden="true" class="fixed inset-0 -z-10 bg-gradient-to-b from-slate-100/93 via-white/90 to-violet-20/88 backdrop-blur-[2px]"></div>
+    @else
+        <div aria-hidden="true" class="fixed inset-0 -z-10 bg-gradient-to-b from-slate-100 via-white to-violet-50/80"></div>
+    @endif
     <main class="mx-auto max-w-3xl px-4 py-8 md:px-6 md:py-12">
         <div class="rounded-2xl bg-white/90 p-6 shadow-lg shadow-slate-900/5 ring-1 ring-slate-200/80 backdrop-blur-sm md:p-8 lg:p-10">
             @if (session('error'))
