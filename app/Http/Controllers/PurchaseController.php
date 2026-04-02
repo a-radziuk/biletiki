@@ -108,7 +108,7 @@ class PurchaseController extends Controller
 
     public function thankYou(Order $order)
     {
-        $order->load('event');
+        $order->load(['event', 'tickets.section']);
 
         return view('purchase.thank-you', compact('order'));
     }
