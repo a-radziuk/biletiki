@@ -62,6 +62,6 @@ class Order extends Model
 
     public function tickets(): HasMany
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Ticket::class)->orderBy('id');
     }
 }

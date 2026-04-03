@@ -14,9 +14,10 @@ final class TicketQrPngGenerator
 
     private const MARGIN = 1;
 
-    public function png(string $payload): string
+    public function png(string $payload, ?int $pixelSize = null): string
     {
-        $renderer = new GDLibRenderer(self::PIXEL_SIZE, self::MARGIN);
+        $pixelSize ??= self::PIXEL_SIZE;
+        $renderer = new GDLibRenderer($pixelSize, self::MARGIN);
         $writer = new Writer($renderer);
 
         return $writer->writeString($payload);

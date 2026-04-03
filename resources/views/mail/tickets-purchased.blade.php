@@ -9,22 +9,14 @@ Thank you for your purchase, **{{ $order->customer_name }}**.
 
 **Where:** {{ $order->event->location }}
 
+Each ticket is attached as a **PDF** (one file per seat). Open the attachment on your phone or print it — each PDF includes the event details, ticket category, QR code, and entry code for that ticket.
+
+@if ($order->tickets->isNotEmpty())
+**Your tickets:**
 @foreach ($order->tickets as $ticket)
----
-
-### {{ $ticket->section->name }}
-
-Show this QR at the entrance:
-
-@php
-    $png = app(\App\Services\TicketQrPngGenerator::class)->png($ticket->public_code);
-@endphp
-
-<img src="data:image/png;base64,{{ base64_encode($png) }}" alt="Ticket QR" style="display:block;margin:12px 0;">
-
-**Ticket code:** `{{ $ticket->public_code }}`
-
+- {{ $ticket->section->name }}
 @endforeach
+@endif
 
 <x-mail::button :url="route('purchase.thank-you', $order)">
 View confirmation
