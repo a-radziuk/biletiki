@@ -25,34 +25,5 @@
                 Did not receive the email? Check spam, or open the confirmation link from Stripe’s receipt page.
             </p>
         </div>
-
-        @if ($order->tickets->isNotEmpty())
-            <div class="rounded-xl bg-gradient-to-b from-white to-slate-50 p-6 ring-1 ring-slate-200/80 md:p-8">
-                <h2 class="text-xl font-bold text-slate-900">Your tickets</h2>
-                <p class="mt-2 text-base text-slate-600">Show these QR codes at the entrance.</p>
-
-                <ul class="mt-6 space-y-6">
-                    @foreach ($order->tickets as $ticket)
-                        <li class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200/60 md:p-6">
-                            <h3 class="text-lg font-bold text-slate-900">{{ $ticket->section->name }}</h3>
-                            @php
-                                $png = app(\App\Services\TicketQrPngGenerator::class)->png($ticket->public_code);
-                            @endphp
-                            <img
-                                src="data:image/png;base64,{{ base64_encode($png) }}"
-                                alt="Ticket QR"
-                                width="180"
-                                height="180"
-                                class="mx-auto mt-4 block max-w-[180px] rounded-lg bg-white p-2 shadow-md ring-1 ring-slate-200/80"
-                            >
-                            <p class="mt-4 text-center text-sm font-medium text-slate-600">
-                                Code:
-                                <code class="rounded-md bg-violet-50 px-2 py-1 text-xs font-mono text-violet-900 ring-1 ring-violet-200/60">{{ $ticket->public_code }}</code>
-                            </p>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     </div>
 @endsection
