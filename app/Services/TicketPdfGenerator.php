@@ -33,7 +33,7 @@ final class TicketPdfGenerator
             'order' => $order,
             'qrDataUri' => $qrDataUri,
             'descriptionPlain' => $this->descriptionPlain($event->description ?? ''),
-            'formattedPrice' => Number::currency((float) $section->price, strtoupper($order->currency)),
+            'formattedPrice' => number_format($section->price, 2) . ' ' . strtoupper($order->currency), //Number::currency((float) $section->price, strtoupper($order->currency)),
         ]);
 
         $pdf->setPaper('a4', 'portrait');
