@@ -14,7 +14,10 @@
         <div aria-hidden="true" class="fixed inset-0 -z-10 bg-gradient-to-b from-slate-100 via-white to-violet-50/80"></div>
     @endif
     <main class="mx-auto max-w-3xl px-4 py-8 md:px-6 md:py-12">
-        <div class="rounded-2xl bg-white/90 p-6 shadow-lg shadow-slate-900/5 ring-1 ring-slate-200/80 backdrop-blur-sm md:p-8 lg:p-10">
+        <div class="relative rounded-2xl bg-white/90 p-6 shadow-lg shadow-slate-900/5 ring-1 ring-slate-200/80 backdrop-blur-sm md:p-8 lg:p-10">
+            <p class="pointer-events-none absolute top-5 right-5 z-10 max-w-[11rem] text-right text-xs font-semibold leading-tight tracking-tight md:top-7 md:right-7 md:max-w-none md:text-sm lg:top-9 lg:right-9">
+                <span class="bg-gradient-to-r from-violet-700 via-indigo-700 to-violet-600 bg-clip-text text-transparent">Gogia</span><span class="text-slate-600"> Tickets</span>
+            </p>
             @if (session('error'))
                 <p class="mb-6 rounded-xl bg-red-50 px-4 py-4 text-base font-medium text-red-800 ring-1 ring-red-200/80" role="alert">{{ session('error') }}</p>
             @endif
